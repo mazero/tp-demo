@@ -1,0 +1,12 @@
+<ul *ngIf="products && products.length">
+    <li *ngFor="let product of products; index as i">
+        KEY - {{ i }}
+        {{product.id}}, {{product.name}} - {{product.description}}
+    </li>
+</ul>
+<hr />
+<ul *ngIf="array && array.length">
+    <li *ngFor="let value of array">
+        {{value}}
+    </li>
+</ul>
