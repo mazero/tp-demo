@@ -2,10 +2,10 @@
 <div class="filter-form">
     <label for="search">Search: </label>
     <input id="search" type="text" [(ngModel)]="searchTerm" placeholder="Filter products" />
-    {{ searchTerm }}
+    {{ searchTerm }} {{ a | percent }} {{ birthday | date: "dd/MM/yy" }}
 </div>
 <div>
-    <button (click)="toggleImage()">
+    <button *ngIf="getFilteredProducts().length > 0" (click)="toggleImage()">
         <span *ngIf="displayImage; else noImage">Hide</span> 
         <ng-template #noImage>
             Show
@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of getFilteredProducts()">
+            <tr *ngFor="let product of products | productSearch:searchTerm">
                 <td>#{{ product.id }}</td>
                 <td *ngIf="displayImage"><img [src]="product.imageUrl" width="30px" /></td>
                 <td>{{ product.productName }}</td>

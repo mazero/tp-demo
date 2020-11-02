@@ -17,6 +17,8 @@ export interface IProduct {
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+  public birthday: Date = new Date(1988, 3, 15); 
+  public a: number = 0.259;
   public searchTerm: string = '';
   public displayImage: boolean = true;
   public products: IProduct[] = [
@@ -76,6 +78,7 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('birthday', this.birthday);
   }
 
   public toggleImage(): void {
@@ -83,9 +86,9 @@ export class ProductListComponent implements OnInit {
   }
 
   public getFilteredProducts(): IProduct[] {
-    const term = this.searchTerm.toLowerCase();
+    const term: string = this.searchTerm.toLowerCase();
     return this.products.filter(product => {
-      const name = product.productName.toLowerCase();
+      const name: string = product.productName.toLowerCase();
       return name.indexOf(term) > -1;
     });
   }
