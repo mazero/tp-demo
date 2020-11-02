@@ -1,12 +1,44 @@
-<ul *ngIf="products && products.length">
-    <li *ngFor="let product of products; index as i">
-        KEY - {{ i }}
-        {{product.id}}, {{product.name}} - {{product.description}}
-    </li>
-</ul>
-<hr />
-<ul *ngIf="array && array.length">
-    <li *ngFor="let value of array">
-        {{value}}
-    </li>
-</ul>
+<h3>Product list</h3>
+<div class="filter-form">
+    <label for="search">Search: </label>
+    <input id="search" type="text" [(ngModel)]="searchTerm" placeholder="Filter products" />
+    {{ searchTerm }}
+</div>
+<div>
+    <button (click)="toggleImage()">
+        <span *ngIf="displayImage; else noImage">Hide</span> 
+        <ng-template #noImage>
+            Show
+        </ng-template>
+        images
+    </button>
+    <table *ngIf="getFilteredProducts().length > 0; else noProductTemplate">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td *ngIf="displayImage">Image</td>
+                <td>Name</td>
+                <td>Code</td>
+                <td>Release date</td>
+                <td>Description</td>
+                <td>Pricing</td>
+                <td>Rating</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of getFilteredProducts()">
+                <td>#{{ product.id }}</td>
+                <td *ngIf="displayImage"><img [src]="product.imageUrl" width="30px" /></td>
+                <td>{{ product.productName }}</td>
+                <td>{{ product.productCode }}</td>
+                <td>{{ product.releaseDate }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.starRating }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #noProductTemplate>
+        <h4>No product availabe! You can save money ;)</h4>
+    </ng-template>
+</div>
