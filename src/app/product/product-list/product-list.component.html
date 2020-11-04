@@ -4,15 +4,15 @@
     <input id="search" type="text" [(ngModel)]="searchTerm" placeholder="Filter products" />
     {{ searchTerm }} {{ a | percent }} {{ birthday | date: "dd/MM/yy" }}
 </div>
-<div>
-    <button *ngIf="getFilteredProducts().length > 0" (click)="toggleImage()">
+<div *ngIf="products$ | async as products" >
+    <button (click)="toggleImage()">
         <span *ngIf="displayImage; else noImage">Hide</span> 
         <ng-template #noImage>
             Show
         </ng-template>
         images
     </button>
-    <table *ngIf="getFilteredProducts().length > 0; else noProductTemplate">
+    <table *ngIf="products.length > 0; else noProductTemplate">
         <thead>
             <tr>
                 <td>ID</td>
@@ -43,4 +43,7 @@
     <ng-template #noProductTemplate>
         <h4>No product availabe! You can save money ;)</h4>
     </ng-template>
+</div>
+<div>
+    <button (click)="refreshProducts()">Refresh products</button>
 </div>
