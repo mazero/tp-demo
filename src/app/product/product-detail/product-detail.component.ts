@@ -1,4 +1,9 @@
+import { Observable } from 'rxjs';
+import { ProductService } from 'src/app/shared/model/product.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { map, filter, switchMap, tap } from 'rxjs/operators';
+import { Product } from 'src/app/shared/model/product';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,9 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
 
-  constructor() { }
+  public product$: Observable<Product>;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) { 
+    let currentId$: Observable<number> = route.paramMap.pipe(
+      map(params => params.get('id')),
+      filter(id => id !== null),
+      map(id => Number(id))
+    )
+
+    this.product$ = currentId$.pipe(
+      switchMap(id => productService.getProductById$(id))
+    )
+  }
 
   ngOnInit(): void {
+  }
+
+  public goToProducts(): void {
+    this.router.navigate(['/products']);
   }
 
 }

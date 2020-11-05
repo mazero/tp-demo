@@ -11,6 +11,7 @@ import { ProductDetailComponent } from './product/product-detail/product-detail.
 import { StarComponent } from './shared/ui/star/star.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductSearchPipe } from './product/product-search.pipe';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductSearchPipe } from './product/product-search.pipe';
     ProductDetailComponent,
     StarComponent,
     WelcomeComponent,
-    ProductSearchPipe
+    ProductSearchPipe,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

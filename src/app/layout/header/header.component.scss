@@ -27,6 +27,11 @@ header {
                     &:active {
                        color: whitesmoke;
                     }
+
+                    &.activated {
+                        background-color: orange;
+                        font-weight: bold;
+                    }
                 }
             }
         }
