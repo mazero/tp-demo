@@ -1,3 +1,5 @@
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
@@ -11,8 +13,10 @@ const routes: Routes = [
   { path: 'products', component: ProductComponent, children: [
     { path: '', component: ProductListComponent },
     { path: ':id', component: ProductDetailComponent },
-    { path: ':id/edit', component: ProductDetailComponent } // Will be changed when we'ill use forms
-  ]}
+    { path: ':id/edit', component: ProductEditComponent } // Will be changed when we'ill use forms
+  ]},
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' }, // // redirect to welcome
+  { path: '**', component: PageNotFoundComponent }   // Wildcard route for a 404 page
 ];
 
 @NgModule({

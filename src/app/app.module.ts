@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,6 +12,8 @@ import { StarComponent } from './shared/ui/star/star.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductSearchPipe } from './product/product-search.pipe';
 import { ProductComponent } from './product/product.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,16 @@ import { ProductComponent } from './product/product.component';
     StarComponent,
     WelcomeComponent,
     ProductSearchPipe,
-    ProductComponent
+    ProductComponent,
+    PageNotFoundComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
